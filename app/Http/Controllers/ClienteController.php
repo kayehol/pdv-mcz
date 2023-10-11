@@ -18,27 +18,37 @@ class ClienteController extends Controller
                 'clients' => $clients
             ]);
         } catch (Exception $e) {
-            dd($e->getMessage());
+            var_dump($e->getMessage());
+            abort(500);
         }
     }
 
-    public function store(Request $request): Cliente
+    public function store(Request $request): View
     {
         try {
-            $client = Cliente::create([
+            Cliente::create([
                 'nome' => $request->name,
                 'fone' => $request->phone,
                 'endereco' => $request->address,
                 'cep' => $request->cep,
-                'cidade' => $request->cidade,
-                'estado' => $request->estado,
+                'cidade' => $request->city,
+                'estado' => $request->state,
                 'cnpj' => $request->cnpj,
                 'cpf' => $request->cpf
             ]);
+            $clients = Cliente::all();
 
-            return $client;
+            return view('clients', [
+                'clients' => $clients
+            ]);
         } catch (Exception $e) {
-            dd($e->getMessage());
+            var_dump($e->getMessage());
+            abort(500);
         }
+    }
+
+    public function add(): View
+    {
+        return view('clients.add');
     }
 }

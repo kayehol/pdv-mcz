@@ -19,3 +19,5 @@ Route::get('/', function () {
 });
 
 Route::get('/clients', [ClienteController::class, 'index']);
+Route::get('/clients/add', [ClienteController::class, 'add']);
+Route::post('/client', [ClienteController::class, 'store']);
