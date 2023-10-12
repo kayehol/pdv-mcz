@@ -12,7 +12,10 @@
             <button>Ver</button>
         </a>
         <button>Editar</button>
-        <button>Excluir</button>
+        <form action="{{ '/clients/delete/'.$client->id }}" method="POST">
+            @csrf
+            <input type="submit" value="Excluir">
+        </form>
     </div>
     @endforeach
 </body>

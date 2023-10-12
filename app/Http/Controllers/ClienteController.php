@@ -63,4 +63,18 @@ class ClienteController extends Controller
             abort(500);
         }
     }
+
+    public function delete(string $id): RedirectResponse
+    {
+        try {
+            $client = Cliente::where('id', $id)->first();
+            $client->delete();
+
+            return redirect()->route('clients');
+        } catch (\Exception $e) {
+            dd($e);
+            var_dump($e->getMessage());
+            abort(500);
+        }
+    }
 }

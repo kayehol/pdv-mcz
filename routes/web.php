@@ -21,4 +21,5 @@ Route::get('/', function () {
 Route::get('/clients', [ClienteController::class, 'index'])->name('clients');
 Route::get('/clients/add', [ClienteController::class, 'add']);
 Route::get('/clients/{id}', [ClienteController::class, 'show']);
+Route::post('/clients/delete/{id}', [ClienteController::class, 'delete']);
 Route::post('/client', [ClienteController::class, 'store']);
