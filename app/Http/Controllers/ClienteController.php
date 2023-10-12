@@ -51,4 +51,18 @@ class ClienteController extends Controller
     {
         return view('clients.add');
     }
+
+    public function show(string $id): View
+    {
+        try {
+            $client = Cliente::where('id', $id)->first();
+
+            return view('clients.details', [
+                'client' => $client
+            ]);
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+            abort(500);
+        }
+    }
 }
