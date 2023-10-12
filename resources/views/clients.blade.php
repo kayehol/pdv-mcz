@@ -11,7 +11,9 @@
         <a href="{{ '/clients/'.$client->id }}">
             <button>Ver</button>
         </a>
-        <button>Editar</button>
+        <a href="{{ '/clients/edit/'.$client->id }}">
+            <button>Editar</button>
+        </a>
         <form action="{{ '/clients/delete/'.$client->id }}" method="POST">
             @csrf
             <input type="submit" value="Excluir">

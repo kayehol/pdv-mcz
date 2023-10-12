@@ -72,7 +72,44 @@ class ClienteController extends Controller
 
             return redirect()->route('clients');
         } catch (\Exception $e) {
-            dd($e);
+            var_dump($e->getMessage());
+            abort(500);
+        }
+    }
+
+    public function edit(string $id): View
+    {
+        try {
+            $client = Cliente::where('id', $id)->first();
+
+            return view('clients.edit', [
+                'client' => $client
+            ]);
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+            abort(500);
+        }
+    }
+
+    public function patch(Request $request, string $id)
+    {
+        try {
+            $client = Cliente::where('id', $id)->first();
+
+            $client->nome = $request->name;
+            $client->fone = $request->phone;
+            $client->endereco = $request->address;
+            $client->cep = $request->cep;
+            $client->cidade = $request->city;
+            $client->estado = $request->state;
+            $client->cnpj = $request->cnpj;
+            $client->cpf = $request->cpf;
+            $client->save();
+
+            return view('clients.details', [
+                'client' => $client
+            ]);
+        } catch (\Exception $e) {
             var_dump($e->getMessage());
             abort(500);
         }
