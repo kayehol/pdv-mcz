@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Cliente;
 use Exception;
 use Illuminate\View\View;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class ClienteController extends Controller
 {
@@ -23,7 +24,7 @@ class ClienteController extends Controller
         }
     }
 
-    public function store(Request $request): View
+    public function store(Request $request): RedirectResponse
     {
         try {
             Cliente::create([
@@ -36,11 +37,8 @@ class ClienteController extends Controller
                 'cnpj' => $request->cnpj,
                 'cpf' => $request->cpf
             ]);
-            $clients = Cliente::all();
 
-            return view('clients', [
-                'clients' => $clients
-            ]);
+            return redirect()->route('clients');
         } catch (Exception $e) {
             var_dump($e->getMessage());
             abort(500);
