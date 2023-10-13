@@ -28,15 +28,11 @@ class ProdutoController extends Controller
     public function store(Request $request): RedirectResponse
     {
         try {
-            Cliente::create([
-                'nome' => $request->name,
-                'fone' => $request->phone,
-                'endereco' => $request->address,
-                'cep' => $request->cep,
-                'cidade' => $request->city,
-                'estado' => $request->state,
-                'cnpj' => $request->cnpj,
-                'cpf' => $request->cpf
+            Produto::create([
+                'descricao' => $request->description,
+                'preco' => $request->price,
+                'gradacao' => $request->gradation,
+                'codigo' => $request->code,
             ]);
 
             return redirect()->route('products');
@@ -48,7 +44,7 @@ class ProdutoController extends Controller
 
     public function add(): View
     {
-        return view('clients.add');
+        return view('products.add');
     }
 
     public function show(string $id): View

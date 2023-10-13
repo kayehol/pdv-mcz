@@ -12,4 +12,6 @@ class Produto extends Model
     use HasFactory;
     use HasUuids;
     use SoftDeletes;
+
+    protected $fillable = ['descricao', 'preco', 'gradacao', 'codigo'];
 }
