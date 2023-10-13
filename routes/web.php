@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\ProdutoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('clients');
 });
 
 Route::get('/clients', [ClienteController::class, 'index'])->name('clients');
@@ -24,4 +25,12 @@ Route::get('/clients/{id}', [ClienteController::class, 'show']);
 Route::get('/clients/edit/{id}', [ClienteController::class, 'edit']);
 Route::post('/clients/delete/{id}', [ClienteController::class, 'delete']);
 Route::post('/clients/patch/{id}', [ClienteController::class, 'patch']);
-Route::post('/client', [ClienteController::class, 'store']);
+Route::post('/clients', [ClienteController::class, 'store']);
+
+Route::get('/products', [ProdutoController::class, 'index'])->name('products');
+Route::get('/products/add', [ProdutoController::class, 'add']);
+Route::get('/products/{id}', [ProdutoController::class, 'show']);
+Route::get('/products/edit/{id}', [ProdutoController::class, 'edit']);
+Route::post('/products/delete/{id}', [ProdutoController::class, 'delete']);
+Route::post('/products/patch/{id}', [ProdutoController::class, 'patch']);
+Route::post('/products', [ProdutoController::class, 'store']);
