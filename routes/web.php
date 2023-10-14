@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProdutoController;
+use App\Http\Controllers\VendaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +35,8 @@ Route::get('/products/edit/{id}', [ProdutoController::class, 'edit']);
 Route::post('/products/delete/{id}', [ProdutoController::class, 'delete']);
 Route::post('/products/patch/{id}', [ProdutoController::class, 'patch']);
 Route::post('/products', [ProdutoController::class, 'store']);
+
+Route::get('/sales', [VendaController::class, 'index'])->name('sales');
+Route::get('/sales/add', [VendaController::class, 'add']);
+Route::get('/sales/{id}', [VendaController::class, 'show']);
+Route::post('/sales', [VendaController::class, 'store']);
