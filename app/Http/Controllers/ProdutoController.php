@@ -30,7 +30,7 @@ class ProdutoController extends Controller
         try {
             Produto::create([
                 'descricao' => $request->description,
-                'preco' => $request->price,
+                'preco' => floatval($request->price),
                 'gradacao' => $request->gradation,
                 'codigo' => $request->code,
             ]);
@@ -50,10 +50,10 @@ class ProdutoController extends Controller
     public function show(string $id): View
     {
         try {
-            $client = Cliente::where('id', $id)->first();
+            $product = Produto::where('id', $id)->first();
 
-            return view('clients.details', [
-                'client' => $client
+            return view('products.details', [
+                'product' => $product
             ]);
         } catch (\Exception $e) {
             var_dump($e->getMessage());
@@ -64,10 +64,10 @@ class ProdutoController extends Controller
     public function delete(string $id): RedirectResponse
     {
         try {
-            $client = Cliente::where('id', $id)->first();
-            $client->delete();
+            $product = Produto::where('id', $id)->first();
+            $product->delete();
 
-            return redirect()->route('clients');
+            return redirect()->route('products');
         } catch (\Exception $e) {
             var_dump($e->getMessage());
             abort(500);
@@ -77,10 +77,10 @@ class ProdutoController extends Controller
     public function edit(string $id): View
     {
         try {
-            $client = Cliente::where('id', $id)->first();
+            $product = Produto::where('id', $id)->first();
 
-            return view('clients.edit', [
-                'client' => $client
+            return view('products.edit', [
+                'product' => $product
             ]);
         } catch (\Exception $e) {
             var_dump($e->getMessage());
@@ -91,20 +91,16 @@ class ProdutoController extends Controller
     public function patch(Request $request, string $id)
     {
         try {
-            $client = Cliente::where('id', $id)->first();
+            $product = Produto::where('id', $id)->first();
 
-            $client->nome = $request->name;
-            $client->fone = $request->phone;
-            $client->endereco = $request->address;
-            $client->cep = $request->cep;
-            $client->cidade = $request->city;
-            $client->estado = $request->state;
-            $client->cnpj = $request->cnpj;
-            $client->cpf = $request->cpf;
-            $client->save();
+            $product->descricao = $request->description;
+            $product->preco = floatval($request->price);
+            $product->gradacao = $request->gradation;
+            $product->codigo = $request->code;
+            $product->save();
 
-            return view('clients.details', [
-                'client' => $client
+            return view('products.details', [
+                'product' => $product
             ]);
         } catch (\Exception $e) {
             var_dump($e->getMessage());

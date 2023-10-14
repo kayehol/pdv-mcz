@@ -5,7 +5,7 @@
     <h1 class="text-3xl font-bold my-5">Clientes</h1>
 </div>
 <hr>
-<form method="POST" action="{{url('clients')}}">
+<form method="POST" action="{{url('clients/patch/'.$client->id)}}">
     @csrf
     <div class="flex flex-col p-3">
         <div class="py-2">
