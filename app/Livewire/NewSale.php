@@ -41,13 +41,25 @@ class NewSale extends Component
             $product = Produto::where('id', $this->selectedProductId)->first();
 
             if (!$product) throw new \Exception('No product!');
+
             array_push($this->selectedProducts, $product);
+
             $this->subtotal += $product->preco;
             $this->total += $product->preco;
         } catch (\Exception $e) {
             dd($e);
             var_dump($e->getMessage());
             abort(500);
+        }
+    }
+
+    public function remove(int $key)
+    {
+        if (array_key_exists($key, $this->selectedProducts)) {
+            $this->subtotal -= $this->selectedProducts[$key]->preco;
+            $this->total -= $this->selectedProducts[$key]->preco;
+
+            unset($this->selectedProducts[$key]);
         }
     }
 }

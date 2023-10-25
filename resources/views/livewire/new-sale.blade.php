@@ -51,7 +51,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach($this->selectedProducts as $selectedProduct)
+                @foreach($this->selectedProducts as $key => $selectedProduct)
                 <tr>
                     <td class="p-5">{{ $selectedProduct->descricao }} - {{ $selectedProduct->gradacao }}</td>
                     <td class="p-5">R$ {{ $selectedProduct->preco}}</p>
@@ -59,7 +59,7 @@
                         <input />
                     </td>
                     <td class="p-5">
-                        <button wire:click="remove" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 mx-2 rounded">Remover</button>
+                        <button wire:click="remove({{ $key }})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 mx-2 rounded">Remover</button>
                     </td>
                 </tr>
                 @endforeach
