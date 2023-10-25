@@ -5,6 +5,7 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Cliente;
 use App\Models\Produto;
+use Illuminate\View\View;
 
 class NewSale extends Component
 {
@@ -12,10 +13,11 @@ class NewSale extends Component
     public ?Cliente $client;
     public string $selectedProductId = '';
     public array $selectedProducts = [];
+    public int $currentProductQty = 1;
     public float $subtotal = 0.0;
     public float $total = 0.0;
 
-    public function render()
+    public function render(): View
     {
         return view('livewire.new-sale')->with([
             'clients' => Cliente::all(),
@@ -44,8 +46,6 @@ class NewSale extends Component
 
             array_push($this->selectedProducts, $product);
 
-            $this->subtotal += $product->preco;
-            $this->total += $product->preco;
         } catch (\Exception $e) {
             dd($e);
             var_dump($e->getMessage());
@@ -56,10 +56,16 @@ class NewSale extends Component
     public function remove(int $key)
     {
         if (array_key_exists($key, $this->selectedProducts)) {
-            $this->subtotal -= $this->selectedProducts[$key]->preco;
-            $this->total -= $this->selectedProducts[$key]->preco;
+            $this->subtotal -= $this->selectedProducts[$key]->preco * $this->currentProductQty;
+            $this->total -= $this->selectedProducts[$key]->preco * $this->currentProductQty;
 
             unset($this->selectedProducts[$key]);
         }
+    }
+
+    public function addToSale(float $price)
+    {
+        $this->subtotal += $price * $this->currentProductQty;
+        $this->total += $price * $this->currentProductQty;
     }
 }
