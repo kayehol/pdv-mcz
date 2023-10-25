@@ -59,7 +59,7 @@
                         <input />
                     </td>
                     <td class="p-5">
-                        <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 mx-2 rounded">Remover</button>
+                        <button wire:click="remove" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 mx-2 rounded">Remover</button>
                     </td>
                 </tr>
                 @endforeach
