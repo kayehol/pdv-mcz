@@ -69,4 +69,10 @@ class NewSale extends Component
         $this->subtotal += $price * $this->currentProductsQty[$key];
         $this->total += $price * $this->currentProductsQty[$key];
     }
+
+    // public function removeFromSale(float $price, int $key)
+    // {
+    //     $this->subtotal -= $price * $this->currentProductsQty[$key];
+    //     $this->total -= $price * $this->currentProductsQty[$key];
+    // }
 }
