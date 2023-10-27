@@ -9,11 +9,13 @@ use Illuminate\View\View;
 
 class NewSale extends Component
 {
-    public string $selectedClientId;
     public ?Cliente $client;
+
+    public string $selectedClientId;
     public string $selectedProductId = '';
     public array $selectedProducts = [];
-    public int $currentProductQty = 1;
+    public array $currentProductsQty = [];
+
     public float $subtotal = 0.0;
     public float $total = 0.0;
 
@@ -45,7 +47,6 @@ class NewSale extends Component
             if (!$product) throw new \Exception('No product!');
 
             array_push($this->selectedProducts, $product);
-
         } catch (\Exception $e) {
             dd($e);
             var_dump($e->getMessage());
@@ -63,9 +64,9 @@ class NewSale extends Component
         }
     }
 
-    public function addToSale(float $price)
+    public function addToSale(float $price, int $key)
     {
-        $this->subtotal += $price * $this->currentProductQty;
-        $this->total += $price * $this->currentProductQty;
+        $this->subtotal += $price * $this->currentProductsQty[$key];
+        $this->total += $price * $this->currentProductsQty[$key];
     }
 }
