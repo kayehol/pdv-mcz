@@ -27,7 +27,7 @@ class NewSale extends Component
         ]);
     }
 
-    public function updating($property, $value)
+    public function updating($property, $value): void
     {
         try {
             if ($property === 'selectedClientId') {
@@ -39,7 +39,7 @@ class NewSale extends Component
         }
     }
 
-    public function add()
+    public function add(): void
     {
         try {
             $product = Produto::where('id', $this->selectedProductId)->first();
@@ -54,25 +54,19 @@ class NewSale extends Component
         }
     }
 
-    public function remove(int $key)
+    public function remove(float $price, int $key): void
     {
         if (array_key_exists($key, $this->selectedProducts)) {
-            $this->subtotal -= $this->selectedProducts[$key]->preco * $this->currentProductQty;
-            $this->total -= $this->selectedProducts[$key]->preco * $this->currentProductQty;
+            $this->subtotal -= $price * $this->currentProductsQty[$key];
+            $this->total -= $price * $this->currentProductsQty[$key];
 
             unset($this->selectedProducts[$key]);
         }
     }
 
-    public function addToSale(float $price, int $key)
+    public function addToSale(float $price, int $key): void
     {
         $this->subtotal += $price * $this->currentProductsQty[$key];
         $this->total += $price * $this->currentProductsQty[$key];
     }
-
-    // public function removeFromSale(float $price, int $key)
-    // {
-    //     $this->subtotal -= $price * $this->currentProductsQty[$key];
-    //     $this->total -= $price * $this->currentProductsQty[$key];
-    // }
 }

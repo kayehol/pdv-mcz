@@ -71,7 +71,7 @@
                     </td>
                     <td class="p-5">
                         <button
-                            wire:click="remove({{ $this->selectedProduct->preco }}, {{ $key }})"
+                            wire:click="remove({{ $selectedProduct->preco }}, {{ $key }})"
                             class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-4 mx-2 rounded">
                             Remover
                         </button>
