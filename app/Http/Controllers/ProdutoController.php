@@ -26,19 +26,22 @@ class ProdutoController extends Controller
 
     public function store(Request $request): RedirectResponse
     {
-        try {
+        $validated = $request->validate([
+            'description' => 'required',
+            'price' => 'required',
+            'gradation' => 'required',
+        ]);
+
+        if ($validated) {
             Produto::create([
                 'descricao' => $request->description,
                 'preco' => floatval($request->price),
                 'gradacao' => $request->gradation,
                 'codigo' => $request->code,
             ]);
-
-            return redirect()->route('products');
-        } catch (Exception $e) {
-            var_dump($e->getMessage());
-            abort(500);
         }
+
+        return redirect()->route('products');
     }
 
     public function add(): View

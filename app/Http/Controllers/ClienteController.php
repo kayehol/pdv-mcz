@@ -24,7 +24,7 @@ class ClienteController extends Controller
         }
     }
 
-    public function store(Request $request): RedirectResponse | View
+    public function store(Request $request): RedirectResponse
     {
         $validated = $request->validate([
             'name' => 'required',

@@ -196,6 +196,15 @@ return [
         'cpf' => [
             'size' => 'O campo CPF deve conter 11 dígitos'
         ],
+        'description' => [
+            'required' => 'O campo descrição é obrigatório',
+        ],
+        'price' => [
+            'required' => 'O campo preço é obrigatório',
+        ],
+        'gradation' => [
+            'required' => 'O campo gradação é obrigatório',
+        ],
 
     ],
 

@@ -5,6 +5,15 @@
     <h1 class="text-3xl font-bold my-5">Produtos</h1>
 </div>
 <hr>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <form method="POST" action="{{url('products')}}">
     @csrf
     <div class="flex flex-col p-3">
