@@ -5,6 +5,15 @@
     <h1 class="text-3xl font-bold my-5">Clientes</h1>
 </div>
 <hr>
+@if ($errors->any())
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li>{{ $error }}</li>
+        @endforeach
+    </ul>
+</div>
+@endif
 <form method="POST" action="{{url('clients')}}">
     @csrf
     <div class="flex flex-col p-3">
@@ -54,4 +63,5 @@
         <input class="w-2/4 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 mx-5 rounded" type="submit" value="Enviar">
     </div>
 </form>
+
 @endsection

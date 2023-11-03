@@ -24,11 +24,24 @@ class ClienteController extends Controller
         }
     }
 
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request): RedirectResponse | View
     {
-        try {
+        $validated = $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+            'cep' => 'required|size:8',
+            'city' => 'required',
+            'state' => 'required|size:2',
+            'cpnj' => 'size:14',
+            'cpf' => 'size:11',
+        ]);
+
+        if ($validated) {
             Cliente::create([
                 'nome' => $request->name,
+                'email' => $request->email,
                 'fone' => $request->phone,
                 'endereco' => $request->address,
                 'cep' => $request->cep,
@@ -37,12 +50,9 @@ class ClienteController extends Controller
                 'cnpj' => $request->cnpj,
                 'cpf' => $request->cpf
             ]);
-
-            return redirect()->route('clients');
-        } catch (Exception $e) {
-            var_dump($e->getMessage());
-            abort(500);
         }
+
+        return redirect()->route('clients');
     }
 
     public function add(): View

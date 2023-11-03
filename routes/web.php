@@ -16,9 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('clients');
-});
+Route::redirect('/','/clients');
 
 Route::get('/clients', [ClienteController::class, 'index'])->name('clients');
 Route::get('/clients/add', [ClienteController::class, 'add']);
