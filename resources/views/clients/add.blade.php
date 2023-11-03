@@ -56,12 +56,20 @@
             </div>
             <div class="py-2 ml-5">
                 <label for="cpf">CPF</label>
-                <input class="w-full rounded-md border-0 py-1.5 pl-7 pr-20 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="cpf" type="text" name="cpf">
+                <input
+                    class="w-full rounded-md border-0 py-1.5 pl-7 pr-20 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" id="cpf" type="text" name="cpf">
             </div>
         </div>
 
         <input class="w-2/4 self-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 mx-5 rounded" type="submit" value="Enviar">
     </div>
 </form>
-
+<script>
+$(document).ready(function(){
+    $('#cpf').inputmask('999.999.999-99');
+    $('#cnpj').inputmask('99.999.999/9999-99');
+    $('#cep').inputmask('99999-999');
+    $('#phone').inputmask('(99)99999-9999');
+});
+</script>
 @endsection

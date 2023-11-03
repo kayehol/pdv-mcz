@@ -47,6 +47,8 @@
         </div>
         @endisset
         @isset($this->selectedProducts)
+        {{ json_encode($this->selectedProducts)}}
+        {{ json_encode($this->currentProductsQty)}}
         <table class="table-fixed border-solid border-2">
             <h2><b>Produtos:</b></h2>
             <thead class="border-solid border-2">
@@ -96,6 +98,12 @@
         <div class="py-5 px-20 self-end">
             <p><b>Total:</b> {{ $this->total }}</p>
         </div>
+    </div>
+    <div>
+        <button
+            wire:click="storeSale()"
+            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 mx-5 rounded"
+        >Salvar</button>
     </div>
 </div>
 </div>

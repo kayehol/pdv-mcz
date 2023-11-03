@@ -5,6 +5,8 @@ namespace App\Livewire;
 use Livewire\Component;
 use App\Models\Cliente;
 use App\Models\Produto;
+use App\Models\Venda;
+use App\Models\VendaProduto;
 use Illuminate\View\View;
 
 class NewSale extends Component
@@ -68,5 +70,30 @@ class NewSale extends Component
     {
         $this->subtotal += $price * $this->currentProductsQty[$key];
         $this->total += $price * $this->currentProductsQty[$key];
+    }
+
+    public function storeSale(): void
+    {
+        try {
+
+            $sale = Venda::create([
+                'client_id' => $this->selectedClientId,
+                'total' => $this->total,
+            ]);
+
+            if ($sale) {
+                foreach($this->selectedProducts as $key => $product) {
+                    VendaProduto::create([
+                        'venda_id' => $sale->id,
+                        'produto_id' => $product->id,
+                        'qtd' => $this->currentProductsQty[$key] // ?
+                    ]);
+                }
+            }
+
+        } catch (\Exception $e) {
+            var_dump($e->getMessage());
+            abort(500);
+        }
     }
 }
