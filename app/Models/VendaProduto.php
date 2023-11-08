@@ -12,4 +12,8 @@ class VendaProduto extends Model
     use HasFactory;
     use HasUuids;
     use SoftDeletes;
+
+    protected $table = 'vendas_produtos';
+    protected $fillable = ['venda_id', 'produto_id', 'qtd'];
+    public $timestamps = false;
 }

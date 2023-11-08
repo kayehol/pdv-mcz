@@ -8,6 +8,7 @@ use App\Models\Produto;
 use App\Models\Venda;
 use App\Models\VendaProduto;
 use Illuminate\View\View;
+use Illuminate\Support\Facades\Log;
 
 class NewSale extends Component
 {
@@ -64,7 +65,6 @@ class NewSale extends Component
 
                 $this->subtotal -= $price * $currentProductQty;
                 $this->total -= $price * $currentProductQty;
-
             }
 
             unset($this->selectedProducts[$key]);
@@ -81,12 +81,12 @@ class NewSale extends Component
         }
     }
 
-    public function storeSale(): void
+    public function storeSale(): View
     {
         try {
 
             $sale = Venda::create([
-                'client_id' => $this->selectedClientId,
+                'cliente_id' => $this->selectedClientId,
                 'total' => $this->total,
             ]);
 
@@ -99,9 +99,11 @@ class NewSale extends Component
                     ]);
                 }
             }
-
+            return view('sales')->with([
+                'sales' => Venda::all()
+            ]);
         } catch (\Exception $e) {
-            var_dump($e->getMessage());
+            Log::info($e->getMessage());
             abort(500);
         }
     }

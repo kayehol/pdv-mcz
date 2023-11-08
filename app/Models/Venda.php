@@ -12,4 +12,6 @@ class Venda extends Model
     use HasFactory;
     use HasUuids;
     use SoftDeletes;
+
+    protected $fillable = ['cliente_id','total'];
 }

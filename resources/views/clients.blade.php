@@ -14,7 +14,7 @@
 </div>
 <hr>
 @foreach ($clients as $client)
-<div class="flex flex-row items-center rounded-lg py-8 px-5 odd:bg-white even:bg-slate-100 hover:bg-slate-200 items-center justify-between">
+<div class="flex flex-row rounded-lg py-8 px-5 odd:bg-white even:bg-slate-100 hover:bg-slate-200 items-center justify-between">
     <div>
         <p>{{ $client->nome }}</p>
     </div>

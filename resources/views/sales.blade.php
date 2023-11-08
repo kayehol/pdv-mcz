@@ -14,14 +14,17 @@
 </div>
 <hr>
 @foreach ($sales as $sale)
-<div class="flex flex-row py-5 px-2 bg-white hover:bg-slate-200 items-center justify-between">
-  <div class="flex flex-row">
+<div class="flex flex-row rounded-lg py-8 px-5 odd:bg-white even:bg-slate-100 hover:bg-slate-200 items-center justify-between">
+    <div>
+        <p> Cliente: {{ $sale->cliente_id }} </p>
+        <p> Total: R$ {{ number_format($sale->total, 2, ',', '.') }}</p>
+        <p> Data: {{ date('d-m-Y H:m', strtotime($sale->created_at)) }}</p>
+    </div>
     <div>
       <a href="{{ '/sales/'.$sale->id }}">
         <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 mx-2 rounded">Ver</button>
       </a>
     </div>
-  </div>
 </div>
 @endforeach
 @endsection
