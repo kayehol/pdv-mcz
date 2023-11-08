@@ -9,6 +9,7 @@ use App\Models\Venda;
 use App\Models\VendaProduto;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
 
 class NewSale extends Component
 {
@@ -84,6 +85,7 @@ class NewSale extends Component
     public function storeSale(): View
     {
         try {
+            DB::beginTransaction();
 
             $sale = Venda::create([
                 'cliente_id' => $this->selectedClientId,
@@ -98,11 +100,13 @@ class NewSale extends Component
                         'qtd' => $this->currentProductsQty[$key] // ?
                     ]);
                 }
+                DB::commit();
             }
             return view('sales')->with([
                 'sales' => Venda::all()
             ]);
         } catch (\Exception $e) {
+            DB::rollBack();
             Log::info($e->getMessage());
             abort(500);
         }
