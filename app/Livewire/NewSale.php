@@ -38,8 +38,7 @@ class NewSale extends Component
                 $this->client = Cliente::where('id', $value)->first();
             }
         } catch (\Exception $e) {
-            var_dump($e->getMessage());
-            abort(500);
+            abort(500, $e->getMessage());
         }
     }
 
@@ -52,9 +51,7 @@ class NewSale extends Component
 
             array_push($this->selectedProducts, $product);
         } catch (\Exception $e) {
-            dd($e);
-            var_dump($e->getMessage());
-            abort(500);
+            abort(500, $e->getMessage());
         }
     }
 
@@ -107,8 +104,7 @@ class NewSale extends Component
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
-            Log::info($e->getMessage());
-            abort(500);
+            abort(500, $e->getMessage());
         }
     }
 }
