@@ -59,8 +59,13 @@ class NewSale extends Component
     public function remove(float $price, int $key): void
     {
         if (array_key_exists($key, $this->selectedProducts)) {
-            $this->subtotal -= $price * $this->currentProductsQty[$key];
-            $this->total -= $price * $this->currentProductsQty[$key];
+            if (array_key_exists($key, $this->currentProductsQty)) {
+                $currentProductQty = $this->currentProductsQty[$key] ? $this->currentProductsQty[$key] : 1;
+
+                $this->subtotal -= $price * $currentProductQty;
+                $this->total -= $price * $currentProductQty;
+
+            }
 
             unset($this->selectedProducts[$key]);
         }
@@ -68,8 +73,12 @@ class NewSale extends Component
 
     public function addToSale(float $price, int $key): void
     {
-        $this->subtotal += $price * $this->currentProductsQty[$key];
-        $this->total += $price * $this->currentProductsQty[$key];
+        if (array_key_exists($key, $this->currentProductsQty)) {
+            $currentProductQty = $this->currentProductsQty[$key] ? $this->currentProductsQty[$key] : 1;
+
+            $this->subtotal += $price * $currentProductQty;
+            $this->total += $price * $currentProductQty;
+        }
     }
 
     public function storeSale(): void
