@@ -5,23 +5,25 @@
             <select
                 class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                 wire:model.live="selectedClientId">
+                <option value="" selected>Selecione</option>
                 @foreach($clients as $client)
                 <option value="{{ $client->id }}">{{ $client->nome }}</option>
                 @endforeach
             </select>
         </div>
-        <div>
+        <div class="px-2">
             <p>Produtos</p>
             <div class="flex flex-row">
                 <select
-                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                    class="inline-flex w-full justify-center gap-x-1.5 rounded-md bg-white px-3 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
                     wire:model.live="selectedProductId">
+                    <option value="" selected>Selecione</option>
                     @foreach($products as $product)
                     <option value="{{ $product->id }}">{{ $product->descricao }} - {{ $product->gradacao }}</option>
                     @endforeach
                 </select>
                 <button
-                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 mx-5 rounded"
+                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 mx-5 rounded"
                     wire:click="add">
                     Adicionar
                 </button>
@@ -47,9 +49,7 @@
         </div>
         @endisset
         @isset($this->selectedProducts)
-        {{ json_encode($this->selectedProducts)}}
-        {{ json_encode($this->currentProductsQty)}}
-        <table class="table-fixed border-solid border-2">
+        <table class="table-auto w-full border-solid border-2">
             <h2><b>Produtos:</b></h2>
             <thead class="border-solid border-2">
                 <tr>
@@ -93,10 +93,10 @@
     @endisset
     <div class="flex flex-col">
         <div class="py-5 px-20 self-end">
-            <p><b>Subtotal:</b> {{ $this->subtotal }}</p>
+            <p><b>Subtotal:</b> R$ {{ number_format($this->subtotal, 2, ',', '.') }}</p>
         </div>
         <div class="py-5 px-20 self-end">
-            <p><b>Total:</b> {{ $this->total }}</p>
+            <p><b>Total:</b> R$ {{ number_format($this->total, 2, ',', '.') }}</p>
         </div>
     </div>
     <div>
