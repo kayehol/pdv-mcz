@@ -8,7 +8,6 @@ use App\Models\Produto;
 use App\Models\Venda;
 use App\Models\VendaProduto;
 use Illuminate\View\View;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
 
 class NewSale extends Component
