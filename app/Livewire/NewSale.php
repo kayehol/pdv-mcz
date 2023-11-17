@@ -9,6 +9,8 @@ use App\Models\Venda;
 use App\Models\VendaProduto;
 use Illuminate\View\View;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Log;
 
 class NewSale extends Component
 {
@@ -103,6 +105,23 @@ class NewSale extends Component
             ]);
         } catch (\Exception $e) {
             DB::rollBack();
+            abort(500, $e->getMessage());
+        }
+    }
+
+    public function export()
+    {
+        try {
+            $data = [
+                'client' => $this->client,
+                'selectedProducts' => $this->selectedProducts,
+                'subtotal' => $this->subtotal,
+                'total' => $this->total
+            ];
+            $pdf = Pdf::loadView('budget', $data);
+            return $pdf->download('orcamento.pdf');
+        } catch (\Exception $e) {
+            Log::info($e);
             abort(500, $e->getMessage());
         }
     }

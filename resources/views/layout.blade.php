@@ -1,10 +1,11 @@
-<html>
+<html lang="pt-br">
 
 <head>
     <title>PDV</title>
     @vite('resources/css/app.css')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+    <meta charset="utf-8">
 </head>
 
 <body>

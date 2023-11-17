@@ -101,6 +101,11 @@
     </div>
     <div>
         <button
+            wire:click="export()"
+            class="bg-green-500 hover:bg--700 text-white font-bold py-2 px-4 my-5 mx-5 rounded">
+            Gerar PDF
+        </button>
+        <button
             wire:click="storeSale()"
             class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-5 mx-5 rounded"
         >Salvar</button>
