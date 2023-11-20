@@ -119,7 +119,10 @@ class NewSale extends Component
                 'total' => $this->total
             ];
             $pdf = Pdf::loadView('budget', $data);
-            return $pdf->download('orcamento.pdf');
+
+            return response()->streamDownload(function() use ($pdf) {
+                echo $pdf->stream();
+            }, 'orcamento.pdf');
         } catch (\Exception $e) {
             Log::info($e);
             abort(500, $e->getMessage());
