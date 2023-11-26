@@ -28,7 +28,7 @@ class VendaController extends Controller
     // public function show(string $id): View
     // {
     // }
-    //
+
     public function add(): View
     {
         $clients = Cliente::all();
@@ -39,8 +39,4 @@ class VendaController extends Controller
             'products' => $products
         ]);
     }
-
-    // public function store(Request $request): RedirectResponse
-    // {
-    // }
 }

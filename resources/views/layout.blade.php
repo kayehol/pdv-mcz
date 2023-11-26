@@ -12,7 +12,15 @@
     <div class="flex flex-row">
         @section('sidebar')
         <nav class="h-screen basis-1/4 bg-slate-500">
-            <div class="p-5">Logo</div>
+                <div class="p-5">
+                    <img
+                        src="{{ Vite::asset('resources/images/genesis-logo.jpeg' )}}"
+                        alt="logo"
+                        width="150px"
+                        height="150px"
+                        style="border-radius: 10px;"
+                    />
+                </div>
             <ul class="p-5">
                 <li class="py-2 text-white font-bold hover:text-blue-500"><a href="/clients">Clientes</a></li>
                 <li class="py-2 text-white font-bold hover:text-blue-500"><a href="/products">Produtos</a></li>
