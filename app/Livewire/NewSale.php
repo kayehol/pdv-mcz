@@ -115,6 +115,7 @@ class NewSale extends Component
             $data = [
                 'client' => $this->client,
                 'selectedProducts' => $this->selectedProducts,
+                'currentProductsQty' => $this->currentProductsQty,
                 'subtotal' => $this->subtotal,
                 'total' => $this->total
             ];

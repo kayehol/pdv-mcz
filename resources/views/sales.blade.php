@@ -42,7 +42,7 @@
     </div>
     <div>
       <a href="{{ '/sales/'.$sale->id }}">
-        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 mx-2 rounded">Ver</button>
+        <button disabled class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 mx-2 rounded">Ver</button>
       </a>
     </div>
 </div>

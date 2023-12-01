@@ -6,37 +6,52 @@
             font-family: DeJaVu Sans;
         }
          table {
-            border-width: 2px;
+            border-width: 1px;
             border-style: solid;
             width: 100%;
             table-layout: auto;
          }
          thead, tr {
-            border-width: 2px;
+            border-width: 1px;
             border-style: solid;
          }
+        thead, tr {
+            height: 1em;
+        }
          th, td {
             padding: 1.25rem;
+            border-width: 1px;
+            border-style: solid;
+            border-top: 0px;
+            margin: 0.5em;
          }
          #client-container {
             padding-top: 1.25rem;
             padding-bottom: 1.25rem;
+            font-size: 12px;
+            line-height: 1em;
          }
         #final-price-container {
             display: flex;
             flex-direction: column;
+            width: 100%;
+            justify-content: flex-end;
+            text-align: right;
+            margin: 0;
+            padding: 0;
         }
         .price {
-            padding-top: 1.25rem;
-            padding-bottom: 1.25rem;
-            padding-left: 5rem;
-            padding-right: 5rem;
             align-self: flex-end;
         }
     </style>
 </head>
 <body>
 <div>
+    <img
+        src="{{ public_path('storage/genesis-logo.jpeg') }}"
+        alt="logo"
+        width="25%"
+    />
     @isset($client)
     <div id="client-container">
         <p><b>Cliente:</b> {{ $client->nome }}</p>
@@ -55,13 +70,16 @@
     @endisset
     @isset($selectedProducts)
     <table>
-        <h2><b>Produtos:</b></h2>
         <thead>
+            <tr>
+                <th colspan="3">
+                    <h2><b>Produtos:</b></h2>
+                </th>
+            </tr>
             <tr>
                 <th>Descrição - Gradação</th>
                 <th>Valor unitário</th>
                 <th>Quantidade</th>
-                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -69,6 +87,7 @@
             <tr>
                 <td>{{ $selectedProduct->descricao }} - {{ $selectedProduct->gradacao }}</td>
                 <td>R$ {{ $selectedProduct->preco}}</p>
+                <td> {{ $currentProductsQty[$key] }}</p>
             </tr>
             @endforeach
         </tbody>
